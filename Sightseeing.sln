@@ -7,9 +7,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6F6A44C4-12E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D0816DC8-1F14-4A1C-A02D-4B2FE9F52EBD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{65C07ABB-084D-4CC4-BC73-BAAA63B0B0E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sightseeing.Domain", "Sightseeing.Domain\Sightseeing.Domain.csproj", "{B43EF4FA-3504-441C-B345-14F2DFF127AD}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B43EF4FA-3504-441C-B345-14F2DFF127AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B43EF4FA-3504-441C-B345-14F2DFF127AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B43EF4FA-3504-441C-B345-14F2DFF127AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B43EF4FA-3504-441C-B345-14F2DFF127AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{65C07ABB-084D-4CC4-BC73-BAAA63B0B0E6} = {6F6A44C4-12E0-4423-9FED-AF1B68C52D39}
+		{B43EF4FA-3504-441C-B345-14F2DFF127AD} = {65C07ABB-084D-4CC4-BC73-BAAA63B0B0E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3A22971-864D-43AF-BE4B-464EA6D64FEB}
