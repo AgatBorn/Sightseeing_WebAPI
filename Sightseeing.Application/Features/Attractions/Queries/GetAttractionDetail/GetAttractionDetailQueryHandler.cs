@@ -22,7 +22,7 @@ namespace Sightseeing.Application.Features.Attractions.Queries.GetAttractionDeta
 
         public async Task<AttractionDetailVm> Handle(GetAttractionDetailQuery request, CancellationToken cancellationToken)
         {
-            var attraction = await _attractionRepository.GetByIdAsync(request.Id);
+            var attraction = await _attractionRepository.GetByIdWithRelatedDataAsync(request.Id);
 
             if (attraction == null)
             {

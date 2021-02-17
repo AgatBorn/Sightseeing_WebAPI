@@ -28,6 +28,13 @@ namespace Sightseeing.Api
         {
             services.RegisterApplicationServices();
             services.RegisterPersistenceService(Configuration);
+
+            services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,12 +47,11 @@ namespace Sightseeing.Api
 
             app.UseRouting();
 
+            app.UseCors("Open");
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
