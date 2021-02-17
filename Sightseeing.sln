@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sightseeing.Persistence", "Sightseeing.Persistence\Sightseeing.Persistence.csproj", "{7642941C-A304-490A-AC6A-DD0F6731A635}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{CA76CFDB-AFAF-4256-A221-B81506D3E516}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sightseeing.Api", "Sightseeing.Api\Sightseeing.Api.csproj", "{FB054BC1-FC32-4422-B384-9AE7403AF1C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{7642941C-A304-490A-AC6A-DD0F6731A635}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7642941C-A304-490A-AC6A-DD0F6731A635}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7642941C-A304-490A-AC6A-DD0F6731A635}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB054BC1-FC32-4422-B384-9AE7403AF1C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB054BC1-FC32-4422-B384-9AE7403AF1C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB054BC1-FC32-4422-B384-9AE7403AF1C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB054BC1-FC32-4422-B384-9AE7403AF1C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +53,8 @@ Global
 		{0F8DC68C-4B96-42F5-AEEE-CE86C7EFC6AB} = {65C07ABB-084D-4CC4-BC73-BAAA63B0B0E6}
 		{26A43648-BD2E-483D-8CFE-48711CCB3DAF} = {6F6A44C4-12E0-4423-9FED-AF1B68C52D39}
 		{7642941C-A304-490A-AC6A-DD0F6731A635} = {26A43648-BD2E-483D-8CFE-48711CCB3DAF}
+		{CA76CFDB-AFAF-4256-A221-B81506D3E516} = {6F6A44C4-12E0-4423-9FED-AF1B68C52D39}
+		{FB054BC1-FC32-4422-B384-9AE7403AF1C7} = {CA76CFDB-AFAF-4256-A221-B81506D3E516}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3A22971-864D-43AF-BE4B-464EA6D64FEB}
