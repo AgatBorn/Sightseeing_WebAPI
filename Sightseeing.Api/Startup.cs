@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Sightseeing.Api.Middleware;
 using Sightseeing.Application;
 using Sightseeing.Persistence;
 using System;
@@ -46,6 +47,8 @@ namespace Sightseeing.Api
             }
 
             app.UseRouting();
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseCors("Open");
 

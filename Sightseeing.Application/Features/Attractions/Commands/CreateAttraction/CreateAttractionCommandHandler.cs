@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Sightseeing.Application.Contracts.Persistence;
+using Sightseeing.Application.Exceptions;
 using Sightseeing.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,14 @@ namespace Sightseeing.Application.Features.Attractions.Commands.CreateAttraction
         public async Task<CreateAttractionCommandResponse> Handle(CreateAttractionCommand request, CancellationToken cancellationToken)
         {
             var response = new CreateAttractionCommandResponse();
+
+            var validator = new CreateAttractionCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+            {
+                throw new ValidationException(validationResult);
+            }
 
             var attraction = _mapper.Map<Attraction>(request);
 
