@@ -2,6 +2,7 @@
 using Sightseeing.Application.Features.Attractions.Commands.CreateAttraction;
 using Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail;
 using Sightseeing.Application.Features.Cities.Commands.CreateCity;
+using Sightseeing.Application.Features.Countries.Commands;
 using Sightseeing.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace Sightseeing.Application.Profiles
             CreateMap<City, Features.Attractions.Queries.GetAttractionDetail.CityDto>().ReverseMap();
             CreateMap<CreateCityCommand, City>();
             CreateMap<City, Features.Cities.Commands.CreateCity.CityDto>();
+
+            CreateMap<CreateCountryCommand, Country>();
+            CreateMap<Country, CountryDto>();
         }
     }
 }
