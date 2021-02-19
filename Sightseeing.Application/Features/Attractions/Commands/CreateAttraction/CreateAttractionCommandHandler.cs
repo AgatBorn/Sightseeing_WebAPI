@@ -31,14 +31,22 @@ namespace Sightseeing.Application.Features.Attractions.Commands.CreateAttraction
 
             if (validationResult.Errors.Count > 0)
             {
-                throw new ValidationException(validationResult);
+                response.Success = false;
+
+                response.ValidationErrors = new List<string>();
+                foreach (var error in validationResult.Errors)
+                {
+                    response.ValidationErrors.Add(error.ErrorMessage);
+                }
             }
+            else
+            {
+                var attraction = _mapper.Map<Attraction>(request);
 
-            var attraction = _mapper.Map<Attraction>(request);
+                attraction = await _attractionRepository.AddAsync(attraction);
 
-            attraction = await _attractionRepository.AddAsync(attraction);
-
-            response.Attraction = _mapper.Map<AttractionDto>(attraction);
+                response.Attraction = _mapper.Map<AttractionDto>(attraction);
+            }
 
             return response;
         }
