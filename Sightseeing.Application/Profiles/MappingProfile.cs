@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Sightseeing.Application.Features.Attractions.Commands.CreateAttraction;
 using Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail;
+using Sightseeing.Application.Features.Cities.Commands.CreateCity;
 using Sightseeing.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,9 @@ namespace Sightseeing.Application.Profiles
 
             CreateMap<AttractionCategory, AttractionCategoryDto>().ReverseMap();
 
-            CreateMap<City, CityDto>().ReverseMap();
+            CreateMap<City, Features.Attractions.Queries.GetAttractionDetail.CityDto>().ReverseMap();
+            CreateMap<CreateCityCommand, City>();
+            CreateMap<City, Features.Cities.Commands.CreateCity.CityDto>();
         }
     }
 }
