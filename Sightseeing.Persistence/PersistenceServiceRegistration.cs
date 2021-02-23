@@ -22,6 +22,7 @@ namespace Sightseeing.Persistence
             services.AddScoped<IAttractionRepository, AttractionRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IAttractionCategoryRepository, AttractionCategoryRepository>();
 
             return services;
         }

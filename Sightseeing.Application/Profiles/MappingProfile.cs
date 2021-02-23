@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Sightseeing.Application.Features.AttractionCategories.Commands;
 using Sightseeing.Application.Features.Attractions.Commands.CreateAttraction;
 using Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail;
 using Sightseeing.Application.Features.Cities.Commands.CreateCity;
@@ -14,11 +15,16 @@ namespace Sightseeing.Application.Profiles
     {
         public MappingProfile()
         {
-            CreateMap<Attraction, CreateAttractionCommand>().ReverseMap();
+            CreateMap<CreateAttractionCommand, Attraction>();
             CreateMap<Attraction, AttractionDto>().ReverseMap();
             CreateMap<Attraction, AttractionDetailVm>().ReverseMap();
 
-            CreateMap<AttractionCategory, AttractionCategoryDto>().ReverseMap();
+            CreateMap<AttractionCategory, Features.Attractions.Queries.GetAttractionDetail.AttractionCategoryDto>().ReverseMap();
+            CreateMap<CreateAttractionCategoryCommand, AttractionCategory>();
+            CreateMap<AttractionCategory, Features.AttractionCategories.Commands.AttractionCategoryDto>()
+                .ForMember(c => c.Id, opt => opt.MapFrom(s => s.AttractionCategoryId));
+            CreateMap<AttractionCategory, Features.AttractionCategories.Queries.GetAllCategories.AttractionCategoryDto>()
+                .ForMember(c => c.Id, opt => opt.MapFrom(s => s.AttractionCategoryId));
 
             CreateMap<City, Features.Attractions.Queries.GetAttractionDetail.CityDto>().ReverseMap();
             CreateMap<CreateCityCommand, City>();
