@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Sightseeing.Api.Middleware;
 using Sightseeing.Application;
 using Sightseeing.Persistence;
@@ -32,6 +33,17 @@ namespace Sightseeing.Api
 
             services.AddControllers();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Sightseeing API",
+
+                });
+                c.CustomSchemaIds(x => x.FullName);
+            });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
@@ -47,6 +59,12 @@ namespace Sightseeing.Api
             }
 
             app.UseRouting();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sightseeing API");
+            });
 
             app.UseMiddleware<ExceptionMiddleware>();
 

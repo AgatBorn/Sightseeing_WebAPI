@@ -30,7 +30,7 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpGet()]
-        public async Task<ActionResult<List<AttractionCategoriesListVm>>> GetAllAttractionCategories()
+        public async Task<ActionResult<AttractionCategoriesListVm>> GetAllAttractionCategories()
         {
             var attractionCategoriesListVm = await _mediator.Send(new GetAllAttractionCategoriesQuery());
 
