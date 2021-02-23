@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sightseeing.Application.Features.Cities.Commands.CreateCity
 {
-    public class CreateCityCommand : IRequest<CreateCityCommandResponse>
+    public class CreateCityCommand : IRequest<CityDto>
     {
         public string Name { get; set; }
         public Guid CountryId { get; set; }

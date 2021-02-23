@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sightseeing.Application.Features.Countries.Commands
 {
-    public class CreateCountryCommand : IRequest<CreateCountryCommandResponse>
+    public class CreateCountryCommand : IRequest<CountryDto>
     {
         public string Name { get; set; }
     }

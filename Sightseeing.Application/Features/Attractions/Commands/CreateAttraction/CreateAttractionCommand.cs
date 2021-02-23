@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sightseeing.Application.Features.Attractions.Commands.CreateAttraction
 {
-    public class CreateAttractionCommand : IRequest<CreateAttractionCommandResponse>
+    public class CreateAttractionCommand : IRequest<AttractionDto>
     {
         public string Name { get; set; }
         public string Date { get; set; }

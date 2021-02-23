@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Sightseeing.Application.Contracts.Persistence;
+using Sightseeing.Application.Exceptions;
 using Sightseeing.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Sightseeing.Application.Features.Cities.Commands.CreateCity
 {
-    public class CreateCityCommandHandler : IRequestHandler<CreateCityCommand, CreateCityCommandResponse>
+    public class CreateCityCommandHandler : IRequestHandler<CreateCityCommand, CityDto>
     {
         private readonly IMapper _mapper;
         private readonly ICityRepository _cityRepository;
@@ -23,33 +24,22 @@ namespace Sightseeing.Application.Features.Cities.Commands.CreateCity
             _countryRepository = countryRepository;
         }
 
-        public async Task<CreateCityCommandResponse> Handle(CreateCityCommand request, CancellationToken cancellationToken)
+        public async Task<CityDto> Handle(CreateCityCommand request, CancellationToken cancellationToken)
         {
-            var response = new CreateCityCommandResponse();
-
             var validator = new CreateCityCommandValidator(_cityRepository, _countryRepository);
             var validationResult = await validator.ValidateAsync(request);
 
             if (validationResult.Errors.Count > 0)
             {
-                response.Success = false;
-
-                response.ValidationErrors = new List<string>();
-                foreach (var error in validationResult.Errors)
-                {
-                    response.ValidationErrors.Add(error.ErrorMessage);
-                }
-            }
-            else
-            {
-                var city = _mapper.Map<City>(request);
-                city = await _cityRepository.AddAsync(city);
-
-                var cityDto = _mapper.Map<CityDto>(city);
-                response.City = cityDto;
+                throw new ValidationException(validationResult);
             }
 
-            return response;
+            var city = _mapper.Map<City>(request);
+            city = await _cityRepository.AddAsync(city);
+
+            var cityDto = _mapper.Map<CityDto>(city);
+
+            return cityDto;
         }
     }
 }

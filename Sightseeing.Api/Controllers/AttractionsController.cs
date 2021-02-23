@@ -29,11 +29,11 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpPost()]
-        public async Task<ActionResult<CreateAttractionCommandResponse>> CreateAttraction([FromBody] CreateAttractionCommand createAttractionCommand)
+        public async Task<ActionResult<AttractionDto>> CreateAttraction([FromBody] CreateAttractionCommand createAttractionCommand)
         {
-            var response = await _mediator.Send(createAttractionCommand);
+            var attractionDto = await _mediator.Send(createAttractionCommand);
 
-            return CreatedAtAction(nameof(GetAttractionDetails), new { id = response.Attraction.AttractionId }, response);
+            return CreatedAtAction(nameof(GetAttractionDetails), new { id = attractionDto.AttractionId }, attractionDto);
         }
     }
 }

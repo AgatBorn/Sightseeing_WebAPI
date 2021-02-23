@@ -20,11 +20,11 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpPost()]
-        public async Task<ActionResult<CreateCityCommandResponse>> CreateCity([FromBody] CreateCityCommand createCityCommand)
+        public async Task<ActionResult<CityDto>> CreateCity([FromBody] CreateCityCommand createCityCommand)
         {
-            var response = await _mediator.Send(createCityCommand);
+            var cityDto = await _mediator.Send(createCityCommand);
 
-            return Ok(response);
+            return Ok(cityDto);
             //return CreatedAtAction(nameof(GetAttractionDetails), new { id = response.Attraction.AttractionId }, response);
         }
     }

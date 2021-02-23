@@ -20,11 +20,11 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreateCountryCommandResponse>> CreateCountry([FromBody] CreateCountryCommand createCountryCommand)
+        public async Task<ActionResult<CountryDto>> CreateCountry([FromBody] CreateCountryCommand createCountryCommand)
         {
-            var response = await _mediator.Send(createCountryCommand);
+            var countryDto = await _mediator.Send(createCountryCommand);
 
-            return Ok(response);
+            return Ok(countryDto);
         }
     }
 }
