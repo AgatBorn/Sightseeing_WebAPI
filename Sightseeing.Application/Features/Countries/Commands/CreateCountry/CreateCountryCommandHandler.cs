@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Sightseeing.Application.Features.Countries.Commands
+namespace Sightseeing.Application.Features.Countries.Commands.CreateCountry
 {
     public class CreateCountryCommandHandler : IRequestHandler<CreateCountryCommand, CountryDto>
     {

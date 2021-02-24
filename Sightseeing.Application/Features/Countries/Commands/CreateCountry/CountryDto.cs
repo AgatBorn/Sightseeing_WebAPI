@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sightseeing.Application.Features.Countries.Commands
+namespace Sightseeing.Application.Features.Countries.Commands.CreateCountry
 {
     public class CountryDto
     {

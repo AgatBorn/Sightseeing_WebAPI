@@ -20,12 +20,10 @@ namespace Sightseeing.Application.Features.Cities.Commands.CreateCity
 
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("{PropertyName} cannot be empty")
-                .NotNull()
                 .MustAsync(CityNameUnique).WithMessage($"City with that name already exists");
 
             RuleFor(c => c.CountryId)
                 .NotEmpty().WithMessage("{PropertyName} cannot be empty")
-                .NotNull()
                 .MustAsync(CountryIdExists).WithMessage($"Cannot find country with that id");
         }
 
@@ -33,7 +31,7 @@ namespace Sightseeing.Application.Features.Cities.Commands.CreateCity
         {
             return await _cityRepository.IsCityNameUnique(name);
         }
-        private async Task<bool> CountryIdExists(Guid countryId, CancellationToken arg2)
+        private async Task<bool> CountryIdExists(Guid countryId, CancellationToken token)
         {
             var country = await _countryRepository.GetByIdAsync(countryId);
 

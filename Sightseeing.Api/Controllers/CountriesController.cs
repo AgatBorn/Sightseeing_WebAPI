@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Sightseeing.Application.Features.Countries.Commands;
+using Sightseeing.Application.Features.Countries.Commands.CreateCountry;
 using System;
 using System.Collections.Generic;
 using System.Linq;

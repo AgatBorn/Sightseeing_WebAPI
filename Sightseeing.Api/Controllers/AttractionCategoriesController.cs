@@ -20,8 +20,8 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpPost()]
-        public async Task<ActionResult<Application.Features.AttractionCategories.Commands.AttractionCategoryDto>> CreateCity
-            ([FromBody] Application.Features.AttractionCategories.Commands.CreateAttractionCategoryCommand createAttractionCategoryCommand)
+        public async Task<ActionResult<Application.Features.AttractionCategories.Commands.CreateAttractionCategory.AttractionCategoryDto>> CreateCity
+            ([FromBody] Application.Features.AttractionCategories.Commands.CreateAttractionCategory.CreateAttractionCategoryCommand createAttractionCategoryCommand)
         {
             var response = await _mediator.Send(createAttractionCategoryCommand);
 

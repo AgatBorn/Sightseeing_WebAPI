@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Sightseeing.Application.Contracts.Persistence;
+using Sightseeing.Application.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +23,14 @@ namespace Sightseeing.Application.Features.Attractions.Queries.GetAttractionDeta
 
         public async Task<AttractionDetailVm> Handle(GetAttractionDetailQuery request, CancellationToken cancellationToken)
         {
+            var validator = new GetAttractionDetailQueryValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+            {
+                throw new ValidationException(validationResult);
+            }
+
             var attraction = await _attractionRepository.GetByIdWithRelatedDataAsync(request.Id);
 
             if (attraction == null)

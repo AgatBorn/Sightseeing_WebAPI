@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Sightseeing.Application.Features.Countries.Commands
+namespace Sightseeing.Application.Features.Countries.Commands.CreateCountry
 {
     public class CreateCountryCommandValidator : AbstractValidator<CreateCountryCommand>
     {
@@ -18,7 +18,6 @@ namespace Sightseeing.Application.Features.Countries.Commands
 
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("{PropertyName} cannot be empty")
-                .NotNull()
                 .MustAsync(CountryNameUnique).WithMessage($"Country with that name already exists");
         }
 
