@@ -30,8 +30,14 @@ namespace Sightseeing.Application.Profiles
             CreateMap<CreateCityCommand, City>();
             CreateMap<City, Features.Cities.Commands.CreateCity.CityDto>();
 
+            CreateMap<City, Features.Cities.Queries.GetAllCities.CityDto>()
+                .ForMember(c => c.Id, opt => opt.MapFrom(s => s.CityId));
+
             CreateMap<CreateCountryCommand, Country>();
             CreateMap<Country, CountryDto>();
+
+            CreateMap<Country, Features.Countries.Queries.GetAllCountries.CountryDto>()
+                .ForMember(c => c.Id, opt => opt.MapFrom(s => s.CountryId));
         }
     }
 }

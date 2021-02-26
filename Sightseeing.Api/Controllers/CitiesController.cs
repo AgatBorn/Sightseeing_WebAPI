@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.Cities.Commands.CreateCity;
+using Sightseeing.Application.Features.Cities.Queries.GetAllCities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,20 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpPost()]
-        public async Task<ActionResult<CityDto>> CreateCity([FromBody] CreateCityCommand createCityCommand)
+        public async Task<ActionResult<Application.Features.Cities.Commands.CreateCity.CityDto>> CreateCity([FromBody] CreateCityCommand createCityCommand)
         {
             var cityDto = await _mediator.Send(createCityCommand);
 
             return Ok(cityDto);
             //return CreatedAtAction(nameof(GetAttractionDetails), new { id = response.Attraction.AttractionId }, response);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<CitiesListVm>> GetAllCities()
+        {
+            var citiesListVm = await _mediator.Send(new GetAllCitiesQuery());
+
+            return Ok(citiesListVm);
         }
     }
 }

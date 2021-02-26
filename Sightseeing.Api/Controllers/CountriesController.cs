@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.Countries.Commands.CreateCountry;
+using Sightseeing.Application.Features.Countries.Queries.GetAllCountries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,19 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CountryDto>> CreateCountry([FromBody] CreateCountryCommand createCountryCommand)
+        public async Task<ActionResult<Application.Features.Countries.Commands.CreateCountry.CountryDto>> CreateCountry([FromBody] CreateCountryCommand createCountryCommand)
         {
             var countryDto = await _mediator.Send(createCountryCommand);
 
             return Ok(countryDto);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<CountriesListVm>> GetAllCities()
+        {
+            var countriesListVm = await _mediator.Send(new GetAllCountriesQuery());
+
+            return Ok(countriesListVm);
         }
     }
 }
