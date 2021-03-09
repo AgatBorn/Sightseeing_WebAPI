@@ -1,4 +1,5 @@
-﻿using Sightseeing.Application.Contracts.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+using Sightseeing.Application.Contracts.Persistence;
 using Sightseeing.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,13 @@ namespace Sightseeing.Persistence.Repositories
     {
         public CityRepository(SightseeingDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public Task<City> GetByIdWithRelatedDataAsync(Guid id)
+        {
+            var city = _dbContext.Cities.Include(c => c.Country).Include(c => c.Attractions).FirstOrDefaultAsync(c => c.CityId == id);
+
+            return city;
         }
 
         public Task<bool> IsCityNameUnique(string name)

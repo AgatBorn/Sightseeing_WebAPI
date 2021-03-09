@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.Cities.Commands.CreateCity;
 using Sightseeing.Application.Features.Cities.Queries.GetAllCities;
+using Sightseeing.Application.Features.Cities.Queries.GetCityDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +26,7 @@ namespace Sightseeing.Api.Controllers
         {
             var cityDto = await _mediator.Send(createCityCommand);
 
-            return Ok(cityDto);
-            //return CreatedAtAction(nameof(GetAttractionDetails), new { id = response.Attraction.AttractionId }, response);
+            return CreatedAtAction(nameof(GetCityDetails), new { id = cityDto.CityId }, cityDto);
         }
 
         [HttpGet]
@@ -35,6 +35,14 @@ namespace Sightseeing.Api.Controllers
             var citiesListVm = await _mediator.Send(new GetAllCitiesQuery());
 
             return Ok(citiesListVm);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CityDetailVm>> GetCityDetails(Guid id)
+        {
+            var cityVm = await _mediator.Send(new GetCityDetailQuery() { Id = id });
+
+            return Ok(cityVm);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.AttractionCategories.Queries.GetAllCategories;
+using Sightseeing.Application.Features.AttractionCategories.Queries.GetAttractionCategoryDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,22 +20,29 @@ namespace Sightseeing.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost()]
+        [HttpPost]
         public async Task<ActionResult<Application.Features.AttractionCategories.Commands.CreateAttractionCategory.AttractionCategoryDto>> CreateCity
             ([FromBody] Application.Features.AttractionCategories.Commands.CreateAttractionCategory.CreateAttractionCategoryCommand createAttractionCategoryCommand)
         {
             var response = await _mediator.Send(createAttractionCategoryCommand);
 
-            return Ok(response);
-            //return CreatedAtAction(nameof(GetAttractionDetails), new { id = response.Attraction.AttractionId }, response);
+            return CreatedAtAction(nameof(GetAttractionCategoryDetails), new { id = response.Id }, response);
         }
 
-        [HttpGet()]
+        [HttpGet]
         public async Task<ActionResult<AttractionCategoriesListVm>> GetAllAttractionCategories()
         {
             var attractionCategoriesListVm = await _mediator.Send(new GetAllAttractionCategoriesQuery());
 
             return Ok(attractionCategoriesListVm);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AttractionCategoryVm>> GetAttractionCategoryDetails(Guid id)
+        {
+            var attractionCategoryVm = await _mediator.Send(new GetAttractionCategoryDetailQuery() { Id = id });
+
+            return Ok(attractionCategoryVm);
         }
     }
 }
