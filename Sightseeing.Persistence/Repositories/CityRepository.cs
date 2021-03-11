@@ -17,7 +17,7 @@ namespace Sightseeing.Persistence.Repositories
 
         public Task<City> GetByIdWithRelatedDataAsync(Guid id)
         {
-            var city = _dbContext.Cities.Include(c => c.Country).Include(c => c.Attractions).FirstOrDefaultAsync(c => c.CityId == id);
+            var city = _dbContext.Cities.Include(c => c.Country).Include(c => c.Attractions).ThenInclude(c => c.Category).FirstOrDefaultAsync(c => c.CityId == id);
 
             return city;
         }
