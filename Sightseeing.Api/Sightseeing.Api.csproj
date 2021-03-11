@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sightseeing.Application\Sightseeing.Application.csproj" />
+    <ProjectReference Include="..\Sightseeing.Identity\Sightseeing.Identity.csproj" />
     <ProjectReference Include="..\Sightseeing.Persistence\Sightseeing.Persistence.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.Cities.Commands.CreateCity;
 using Sightseeing.Application.Features.Cities.Queries.GetAllCities;
@@ -21,7 +22,8 @@ namespace Sightseeing.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost()]
+        [Authorize]
+        [HttpPost]
         public async Task<ActionResult<Application.Features.Cities.Commands.CreateCity.CityDto>> CreateCity([FromBody] CreateCityCommand createCityCommand)
         {
             var cityDto = await _mediator.Send(createCityCommand);

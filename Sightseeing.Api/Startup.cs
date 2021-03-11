@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Sightseeing.Api.Middleware;
 using Sightseeing.Application;
+using Sightseeing.Identity;
 using Sightseeing.Persistence;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace Sightseeing.Api
         {
             services.RegisterApplicationServices();
             services.RegisterPersistenceService(Configuration);
+            services.RegisterIdentityServices(Configuration);
 
             services.AddControllers();
 
@@ -60,6 +62,8 @@ namespace Sightseeing.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -69,6 +73,8 @@ namespace Sightseeing.Api
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseCors("Open");
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

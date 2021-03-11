@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.Attractions.Commands.CreateAttraction;
 using Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail;
@@ -28,6 +30,7 @@ namespace Sightseeing.Api.Controllers
             return Ok(attraction);
         }
 
+        [Authorize]
         [HttpPost()]
         public async Task<ActionResult<AttractionDto>> CreateAttraction([FromBody] CreateAttractionCommand createAttractionCommand)
         {

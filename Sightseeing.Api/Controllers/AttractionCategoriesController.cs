@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.AttractionCategories.Queries.GetAllCategories;
 using Sightseeing.Application.Features.AttractionCategories.Queries.GetAttractionCategoryDetail;
@@ -20,6 +21,7 @@ namespace Sightseeing.Api.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Application.Features.AttractionCategories.Commands.CreateAttractionCategory.AttractionCategoryDto>> CreateCity
             ([FromBody] Application.Features.AttractionCategories.Commands.CreateAttractionCategory.CreateAttractionCategoryCommand createAttractionCategoryCommand)

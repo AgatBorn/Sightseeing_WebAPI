@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.Countries.Commands.CreateCountry;
 using Sightseeing.Application.Features.Countries.Queries.GetAllCountries;
@@ -20,6 +21,7 @@ namespace Sightseeing.Api.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Application.Features.Countries.Commands.CreateCountry.CountryDto>> CreateCountry([FromBody] CreateCountryCommand createCountryCommand)
         {
