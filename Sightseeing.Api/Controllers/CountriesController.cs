@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.Countries.Commands.CreateCountry;
 using Sightseeing.Application.Features.Countries.Queries.GetAllCountries;
+using Sightseeing.Application.Features.Countries.Queries.GetCountryDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Sightseeing.Api.Controllers
         {
             var countryDto = await _mediator.Send(createCountryCommand);
 
-            return Ok(countryDto);
+            return CreatedAtAction(nameof(GetCountryDetails), new { id = countryDto.CountryId }, countryDto);
         }
 
         [HttpGet]
@@ -36,6 +37,14 @@ namespace Sightseeing.Api.Controllers
             var countriesListVm = await _mediator.Send(new GetAllCountriesQuery());
 
             return Ok(countriesListVm);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CountryDetailVm>> GetCountryDetails(Guid id)
+        {
+            var countryVm = await _mediator.Send(new GetCountryDetailQuery() { Id = id });
+
+            return Ok(countryVm);
         }
     }
 }

@@ -36,6 +36,7 @@ namespace Sightseeing.Application.UnitTests.Mocks
 
             var mockAttractionCategoryRepository = new Mock<IAttractionCategoryRepository>();
 
+            mockAttractionCategoryRepository.Setup(repo => repo.GetByIdWithRelatedDataAsync(It.IsAny<Guid>())).ReturnsAsync(categories[0]);
             mockAttractionCategoryRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(categories);
             mockAttractionCategoryRepository.Setup(repo => repo.AddAsync(It.IsAny<AttractionCategory>())).ReturnsAsync((AttractionCategory category) =>
                 {
@@ -134,6 +135,7 @@ namespace Sightseeing.Application.UnitTests.Mocks
 
             var mockCityRepository = new Mock<ICityRepository>();
 
+            mockCityRepository.Setup(c => c.GetByIdWithRelatedDataAsync(It.IsAny<Guid>())).ReturnsAsync(cities[0]);
             mockCityRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(cities);
             mockCityRepository.Setup(repo => repo.AddAsync(It.IsAny<City>())).ReturnsAsync((City city) =>
             {
@@ -170,6 +172,8 @@ namespace Sightseeing.Application.UnitTests.Mocks
             };
 
             var mockCountryRepository = new Mock<ICountryRepository>();
+
+            mockCountryRepository.Setup(c => c.GetByIdWithRelatedDataAsync(It.IsAny<Guid>())).ReturnsAsync(countries[0]);
             mockCountryRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(countries);
             mockCountryRepository.Setup(repo => repo.AddAsync(It.IsAny<Country>())).ReturnsAsync((Country country) =>
             {

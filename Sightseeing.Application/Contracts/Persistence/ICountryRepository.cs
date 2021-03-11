@@ -9,5 +9,6 @@ namespace Sightseeing.Application.Contracts.Persistence
     public interface ICountryRepository : IAsyncRepository<Country>
     {
         Task<bool> IsCountryNameUnique(string name);
+        Task<Country> GetByIdWithRelatedDataAsync(Guid id);
     }
 }

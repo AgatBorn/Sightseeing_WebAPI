@@ -6,6 +6,7 @@ using Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail;
 using Sightseeing.Application.Features.Cities.Commands.CreateCity;
 using Sightseeing.Application.Features.Cities.Queries.GetCityDetail;
 using Sightseeing.Application.Features.Countries.Commands.CreateCountry;
+using Sightseeing.Application.Features.Countries.Queries.GetCountryDetail;
 using Sightseeing.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,11 @@ namespace Sightseeing.Application.Profiles
 
             CreateMap<Country, Features.Countries.Queries.GetAllCountries.CountryDto>()
                 .ForMember(c => c.Id, opt => opt.MapFrom(s => s.CountryId));
+
+            CreateMap<Country, CountryDetailVm>()
+                .ForMember(c => c.Id, opt => opt.MapFrom(s => s.CountryId));
+            CreateMap<City, Features.Countries.Queries.GetCountryDetail.CityDto>()
+                .ForMember(c => c.Id, opt => opt.MapFrom(s => s.CityId));
         }
     }
 }

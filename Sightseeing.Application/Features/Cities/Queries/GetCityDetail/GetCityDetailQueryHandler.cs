@@ -35,7 +35,7 @@ namespace Sightseeing.Application.Features.Cities.Queries.GetCityDetail
 
             if (city == null)
             {
-                throw new ApplicationException($"Attraction {request.Id} not found");
+                throw new ApplicationException($"City {request.Id} not found");
             }
 
             var cityDetailVm = _mapper.Map<CityDetailVm>(city);

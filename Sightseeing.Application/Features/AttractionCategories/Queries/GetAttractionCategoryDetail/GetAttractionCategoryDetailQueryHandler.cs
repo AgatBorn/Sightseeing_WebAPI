@@ -35,7 +35,7 @@ namespace Sightseeing.Application.Features.AttractionCategories.Queries.GetAttra
 
             if (attractionCategory == null)
             {
-                throw new ApplicationException($"Attraction {request.Id} not found");
+                throw new ApplicationException($"Attraction category {request.Id} not found");
             }
 
             var attractionCategoryDetailVm = _mapper.Map<AttractionCategoryVm>(attractionCategory);

@@ -34,7 +34,7 @@ namespace Sightseeing.Application.UnitTests.Features.Attractions.Queries
         }
 
         [Fact]
-        public async Task Handle_ValidCommand_ShouldAddToRepository()
+        public async Task Handle_ValidCommand_ShouldGetTheDetails()
         {
             var handler = new GetAttractionDetailQueryHandler(_mapper, _mockAttractionRepository.Object);
 
