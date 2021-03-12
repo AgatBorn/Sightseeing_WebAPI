@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Sightseeing.Api.Middleware;
 using Sightseeing.Application;
 using Sightseeing.Identity;
@@ -78,6 +82,12 @@ namespace Sightseeing.Api
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
+
+            services.AddHealthChecks()
+                    .AddSqlServer(Configuration.GetConnectionString("SightseeingConnectionString"), name: "SightseeingDb", 
+                        failureStatus: HealthStatus.Unhealthy)
+                    .AddSqlServer(Configuration.GetConnectionString("SightseeingIdentityConnectionString"), name: "SightseeingIdentityDb", 
+                        failureStatus: HealthStatus.Unhealthy);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,7 +117,30 @@ namespace Sightseeing.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions()
+                {
+                    ResponseWriter = WriteHealthCheckResponse,
+                    AllowCachingResponses = false
+                }).RequireAuthorization();
             });
+        }
+
+        private Task WriteHealthCheckResponse(HttpContext httpContext, HealthReport result)
+        {
+            httpContext.Response.ContentType = "application/json";
+
+            var json = new JObject(
+                new JProperty("Status", result.Status.ToString()),
+                new JProperty("TotalChecksDuration", result.TotalDuration.TotalSeconds.ToString("0:0.00")),
+                new JProperty("DependencyHealthChecks", new JObject(result.Entries.Select(item =>
+                    new JProperty(item.Key, new JObject(
+                        new JProperty("Status", item.Value.Status.ToString()),
+                        new JProperty("Duration", item.Value.Duration.TotalSeconds.ToString("0:0.00"))
+                        ))
+                    )))
+                );
+
+            return httpContext.Response.WriteAsync(json.ToString(Formatting.Indented));
         }
     }
 }
