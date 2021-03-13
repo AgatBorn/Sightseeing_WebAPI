@@ -18,6 +18,7 @@ namespace Sightseeing.Application.Features.Countries.Commands.CreateCountry
 
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("{PropertyName} cannot be empty")
+                .MaximumLength(100).WithMessage("{PropertyName} must not exceed 100 characters.")
                 .MustAsync(CountryNameUnique).WithMessage($"Country with that name already exists");
         }
 

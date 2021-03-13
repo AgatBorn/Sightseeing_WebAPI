@@ -20,6 +20,7 @@ namespace Sightseeing.Application.Features.Cities.Commands.CreateCity
 
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("{PropertyName} cannot be empty")
+                .MaximumLength(100).WithMessage("{PropertyName} must not exceed 100 characters.")
                 .MustAsync(CityNameUnique).WithMessage($"City with that name already exists");
 
             RuleFor(c => c.CountryId)

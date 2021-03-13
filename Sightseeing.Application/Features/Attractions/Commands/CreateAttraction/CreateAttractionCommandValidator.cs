@@ -20,7 +20,7 @@ namespace Sightseeing.Application.Features.Attractions.Commands.CreateAttraction
 
             RuleFor(a => a.Name)
                 .NotEmpty().WithMessage("{PropertyName} cannot be empty")
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters");
+                .MaximumLength(100).WithMessage("{PropertyName} must not exceed 100 characters");
 
             RuleFor(a => a.AttractionCategoryId)
                 .NotEmpty().WithMessage("{PropertyName} cannot be empty")
