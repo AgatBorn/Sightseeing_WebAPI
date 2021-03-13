@@ -1,0 +1,18 @@
+2021-03-13 20:20:19.427 +01:00 [INF] Starting application
+2021-03-13 20:20:21.510 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 238.2876 ms
+2021-03-13 20:20:21.792 +01:00 [INF] HTTP GET /swagger/swagger-ui.css responded 200 in 52.2219 ms
+2021-03-13 20:20:21.945 +01:00 [INF] HTTP GET /swagger/favicon-16x16.png responded 200 in 4.9117 ms
+2021-03-13 20:20:22.182 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 107.0577 ms
+2021-03-13 20:21:05.685 +01:00 [INF] HTTP GET /countries responded 200 in 14187.5164 ms
+2021-03-13 20:21:52.692 +01:00 [INF] HTTP POST /account/sign-in responded 200 in 3397.9623 ms
+2021-03-13 20:22:15.123 +01:00 [INF] HTTP POST /countries responded 201 in 462.7780 ms
+2021-03-13 20:22:21.785 +01:00 [INF] HTTP POST /countries responded 201 in 37.5559 ms
+2021-03-13 20:22:25.604 +01:00 [INF] HTTP POST /countries responded 201 in 27.3768 ms
+2021-03-13 20:22:54.288 +01:00 [INF] HTTP GET /countries responded 200 in 9566.3797 ms
+2021-03-13 20:23:02.322 +01:00 [INF] HTTP GET /countries responded 200 in 3869.9559 ms
+2021-03-13 20:23:13.181 +01:00 [INF] HTTP POST /countries responded 201 in 15.4195 ms
+2021-03-13 20:23:21.372 +01:00 [INF] HTTP GET /countries responded 200 in 5267.9901 ms
+2021-03-13 20:23:35.491 +01:00 [INF] HTTP GET /countries responded 200 in 7485.0634 ms
+2021-03-13 20:23:42.687 +01:00 [INF] HTTP GET /countries responded 200 in 2791.0805 ms
+2021-03-13 20:23:50.242 +01:00 [INF] HTTP POST /countries responded 201 in 15.6515 ms
+2021-03-13 20:23:56.897 +01:00 [INF] HTTP GET /countries responded 200 in 3932.0788 ms
