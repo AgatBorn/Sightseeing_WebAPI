@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="3.2.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.32.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,6 +24,12 @@
     <ProjectReference Include="..\Sightseeing.Application\Sightseeing.Application.csproj" />
     <ProjectReference Include="..\Sightseeing.Identity\Sightseeing.Identity.csproj" />
     <ProjectReference Include="..\Sightseeing.Persistence\Sightseeing.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\attractions.proto" GrpcServices="Server">
+      <Link>Protos\attractions.proto</Link>
+    </Protobuf>
   </ItemGroup>
 
 </Project>

@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
 using Sightseeing.Api.Middleware;
+using Sightseeing.Api.Services;
 using Sightseeing.Application;
 using Sightseeing.Identity;
 using Sightseeing.Persistence;
@@ -40,6 +41,7 @@ namespace Sightseeing.Api
             services.RegisterIdentityServices(Configuration);
 
             services.AddControllers();
+            services.AddGrpc();
 
             services.AddSwaggerGen(c =>
             {
@@ -126,6 +128,7 @@ namespace Sightseeing.Api
                     ResponseWriter = WriteHealthCheckResponse,
                     AllowCachingResponses = false
                 }).RequireAuthorization();
+                endpoints.MapGrpcService<AttractionsService>();
             });
         }
 

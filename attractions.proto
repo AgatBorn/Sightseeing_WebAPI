@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "Sightseeing.Grpc";
+
+service Attractions {
+	//rpc GetAllAttractions(AttractionsRequest) returns (AttractionsResponse);
+    rpc GetAttractionById(AttractionDetailRequest) returns (AttractionDetailsResponse);
+}
+
+//message AttractionsRequest {
+//}
+
+//message AttractionsResponse {
+//	repeated Attraction attraction = 1;
+//}
+
+message AttractionDetailRequest {
+	string Id = 1;
+}
+
+message AttractionDetailsResponse {
+	AttractionDetails attraction = 1;
+}
+
+//message Attraction {
+//	string Id = 1;
+//  string Name = 2;
+//  string CategoryName = 6;
+//  string CityName = 9;
+//}
+
+message AttractionDetails {
+	string Id = 1;
+    string Name = 2;
+    string Date = 3;
+    string Author = 4;
+    string Description = 5;
+    string CategoryName = 6;
+    bool IsFree = 7;
+    int32 Price = 8;
+    string CityName = 9;
+}
