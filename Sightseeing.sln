@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{E5C39FF7
 		attractions.proto = attractions.proto
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sightseeing.Api.IntegrationTests", "Sightseeing.Api.IntegrationTests\Sightseeing.Api.IntegrationTests.csproj", "{036E35C0-BBBA-49E9-920C-6B2657144061}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{27E795BD-26FF-42AA-8710-F189944FECD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27E795BD-26FF-42AA-8710-F189944FECD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27E795BD-26FF-42AA-8710-F189944FECD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{036E35C0-BBBA-49E9-920C-6B2657144061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{036E35C0-BBBA-49E9-920C-6B2657144061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{036E35C0-BBBA-49E9-920C-6B2657144061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{036E35C0-BBBA-49E9-920C-6B2657144061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{2C77B478-94AE-4224-A4FA-FB9BA93F3F78} = {D0816DC8-1F14-4A1C-A02D-4B2FE9F52EBD}
 		{27E795BD-26FF-42AA-8710-F189944FECD5} = {26A43648-BD2E-483D-8CFE-48711CCB3DAF}
 		{E5C39FF7-0E9E-4B1F-8DC2-AC61597FB31E} = {6F6A44C4-12E0-4423-9FED-AF1B68C52D39}
+		{036E35C0-BBBA-49E9-920C-6B2657144061} = {D0816DC8-1F14-4A1C-A02D-4B2FE9F52EBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3A22971-864D-43AF-BE4B-464EA6D64FEB}

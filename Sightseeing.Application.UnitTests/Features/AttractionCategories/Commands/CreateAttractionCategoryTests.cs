@@ -69,11 +69,11 @@ namespace Sightseeing.Application.UnitTests.Features.AttractionCategories.Comman
         public void Handle_InvalidCommand_TooLongName_ShouldThrowValidationException()
         {
             var handler = new CreateAttractionCategoryCommandHandler(_mapper, _mockAttractionCategoryRepository.Object);
-            var command = new CreateAttractionCategoryCommand { Name = "ThisNameShouldHaveMoreThan50CharactersSoINeedToAddAFewMore" };
+            var command = new CreateAttractionCategoryCommand { Name = "ThisNameShouldHaveMoreThan50CharactersSoINeedToAddAFewMoreThisNameShouldHaveMoreThan50CharactersSoINeedToAddAFewMore" };
 
             Func<Task> func = async () => await handler.Handle(command, CancellationToken.None);
             
-            func.Should().Throw<ValidationException>().Where(e => e.Errors.Any(x => x.Contains("must not exceed 50 characters")));
+            func.Should().Throw<ValidationException>().Where(e => e.Errors.Any(x => x.Contains("must not exceed 100 characters")));
 
             _mockAttractionCategoryRepository.Verify(repo => repo.AddAsync(It.IsAny<AttractionCategory>()), Times.Never());
         }

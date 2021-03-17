@@ -32,7 +32,7 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<CountriesListVm>> GetAllCities()
+        public async Task<ActionResult<CountriesListVm>> GetAllCountries()
         {
             var countriesListVm = await _mediator.Send(new GetAllCountriesQuery());
 
