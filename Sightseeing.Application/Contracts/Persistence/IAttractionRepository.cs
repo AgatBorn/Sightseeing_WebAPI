@@ -9,5 +9,6 @@ namespace Sightseeing.Application.Contracts.Persistence
     public interface IAttractionRepository : IAsyncRepository<Attraction>
     {
         Task<Attraction> GetByIdWithRelatedDataAsync(Guid id);
+        Task<IReadOnlyList<Attraction>> GetAllWithRelatedDataAsync();
     }
 }

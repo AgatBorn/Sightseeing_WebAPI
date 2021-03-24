@@ -24,7 +24,7 @@ namespace Sightseeing.Api.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<Application.Features.Countries.Commands.CreateCountry.CountryDto>> CreateCountry([FromBody] CreateCountryCommand createCountryCommand)
+        public async Task<ActionResult<CountryDto>> CreateCountry([FromBody] CreateCountryCommand createCountryCommand)
         {
             var countryDto = await _mediator.Send(createCountryCommand);
 
@@ -32,11 +32,11 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<CountriesListVm>> GetAllCountries()
+        public async Task<ActionResult<List<CountryListVm>>> GetAllCountries()
         {
-            var countriesListVm = await _mediator.Send(new GetAllCountriesQuery());
+            var list = await _mediator.Send(new GetAllCountriesQuery());
 
-            return Ok(countriesListVm);
+            return Ok(list);
         }
 
         [HttpGet("{id}")]

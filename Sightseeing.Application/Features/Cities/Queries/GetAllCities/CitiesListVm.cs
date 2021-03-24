@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Sightseeing.Application.Features.Cities.Queries.GetAllCities
 {
-    public class CitiesListVm
+    public class CityListVm
     {
-        public List<CityDto> Cities { get; set; }
-        public int Count { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }

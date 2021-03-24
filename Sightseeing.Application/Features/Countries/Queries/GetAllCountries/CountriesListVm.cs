@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Sightseeing.Application.Features.Countries.Queries.GetAllCountries
 {
-    public class CountriesListVm
+    public class CountryListVm
     {
-        public List<CountryDto> Countries { get; set; }
-        public int Count { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }

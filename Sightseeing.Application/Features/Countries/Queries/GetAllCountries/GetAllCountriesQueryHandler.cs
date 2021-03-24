@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sightseeing.Application.Features.Countries.Queries.GetAllCountries
 {
-    public class GetAllCountriesQueryHandler : IRequestHandler<GetAllCountriesQuery, CountriesListVm>
+    public class GetAllCountriesQueryHandler : IRequestHandler<GetAllCountriesQuery, IList<CountryListVm>>
     {
         private readonly IMapper _mapper;
         private readonly ICountryRepository _countryRepository;
@@ -20,19 +20,13 @@ namespace Sightseeing.Application.Features.Countries.Queries.GetAllCountries
             _countryRepository = countryRepository;
         }
 
-        public async Task<CountriesListVm> Handle(GetAllCountriesQuery request, CancellationToken cancellationToken)
+        public async Task<IList<CountryListVm>> Handle(GetAllCountriesQuery request, CancellationToken cancellationToken)
         {
             var countries = await _countryRepository.GetAllAsync();
 
-            var countriesDto = _mapper.Map<List<CountryDto>>(countries);
+            var list = _mapper.Map<List<CountryListVm>>(countries);
 
-            var vm = new CountriesListVm
-            {
-                Countries = countriesDto,
-                Count = countriesDto.Count
-            };
-
-            return vm;
+            return list;
         }
     }
 }

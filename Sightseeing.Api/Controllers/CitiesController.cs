@@ -24,7 +24,7 @@ namespace Sightseeing.Api.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<Application.Features.Cities.Commands.CreateCity.CityDto>> CreateCity([FromBody] CreateCityCommand createCityCommand)
+        public async Task<ActionResult<CityDto>> CreateCity([FromBody] CreateCityCommand createCityCommand)
         {
             var cityDto = await _mediator.Send(createCityCommand);
 
@@ -32,11 +32,11 @@ namespace Sightseeing.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<CitiesListVm>> GetAllCities()
+        public async Task<ActionResult<List<CityListVm>>> GetAllCities()
         {
-            var citiesListVm = await _mediator.Send(new GetAllCitiesQuery());
+            var list = await _mediator.Send(new GetAllCitiesQuery());
 
-            return Ok(citiesListVm);
+            return Ok(list);
         }
 
         [HttpGet("{id}")]

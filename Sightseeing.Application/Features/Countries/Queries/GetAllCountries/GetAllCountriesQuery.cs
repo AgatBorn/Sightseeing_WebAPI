@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sightseeing.Application.Features.Countries.Queries.GetAllCountries
 {
-    public class GetAllCountriesQuery : IRequest<CountriesListVm>
+    public class GetAllCountriesQuery : IRequest<IList<CountryListVm>>
     {
     }
 }

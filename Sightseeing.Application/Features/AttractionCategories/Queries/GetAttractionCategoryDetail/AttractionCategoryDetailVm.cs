@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Sightseeing.Application.Features.AttractionCategories.Queries.GetAttractionCategoryDetail
 {
-    public class AttractionCategoryVm
+    public class AttractionCategoryDetailVm
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public List<AttractionDto> Attractions { get; set; }
+        public ICollection<AttractionCategoryDetailAttractionVm> Attractions { get; set; }
     }
 }

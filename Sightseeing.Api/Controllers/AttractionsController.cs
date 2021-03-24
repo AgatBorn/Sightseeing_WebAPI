@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.Attractions.Commands.CreateAttraction;
+using Sightseeing.Application.Features.Attractions.Queries.GetAllAtractions;
 using Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,14 @@ namespace Sightseeing.Api.Controllers
         public AttractionsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<AttractionListVm>>> GetAllAttractions()
+        {
+            var list = await _mediator.Send(new GetAllAttractionsQuery());
+
+            return Ok(list);
         }
 
         [HttpGet("{id}")]

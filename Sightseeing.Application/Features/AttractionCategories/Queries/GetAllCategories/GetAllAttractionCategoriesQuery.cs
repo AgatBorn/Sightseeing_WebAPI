@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sightseeing.Application.Features.AttractionCategories.Queries.GetAllCategories
 {
-    public class GetAllAttractionCategoriesQuery : IRequest<AttractionCategoriesListVm>
+    public class GetAllAttractionCategoriesQuery : IRequest<IList<AttractionCategoryListVm>>
     {
     }
 }

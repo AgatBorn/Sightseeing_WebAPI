@@ -18,5 +18,10 @@ namespace Sightseeing.Persistence.Repositories
         {
             return await _dbContext.Attractions.Include(x => x.Category).Include(x => x.City).FirstOrDefaultAsync(x => x.AttractionId == id);
         }
+
+        public async Task<IReadOnlyList<Attraction>> GetAllWithRelatedDataAsync()
+        {
+            return await _dbContext.Attractions.Include(x => x.Category).Include(x => x.City).ToListAsync();
+        }
     }
 }

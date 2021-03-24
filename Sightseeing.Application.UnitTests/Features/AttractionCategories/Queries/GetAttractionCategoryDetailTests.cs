@@ -42,7 +42,7 @@ namespace Sightseeing.Application.UnitTests.Features.AttractionCategories.Querie
 
             var attractionResult = await handler.Handle(command, CancellationToken.None);
 
-            attractionResult.Should().BeOfType(typeof(AttractionCategoryVm));
+            attractionResult.Should().BeOfType(typeof(AttractionCategoryDetailVm));
             attractionResult.Name.Should().Be("Garden");
 
             _mockAttractionCategoryRepository.Verify(repo => repo.GetByIdWithRelatedDataAsync(It.IsAny<Guid>()), Times.Once());

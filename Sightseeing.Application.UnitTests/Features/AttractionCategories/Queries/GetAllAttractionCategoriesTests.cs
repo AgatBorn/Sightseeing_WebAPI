@@ -40,9 +40,7 @@ namespace Sightseeing.Application.UnitTests.Features.AttractionCategories.Querie
 
             var result = await handler.Handle(new GetAllAttractionCategoriesQuery(), CancellationToken.None);
 
-            result.Should().BeOfType(typeof(AttractionCategoriesListVm));
-            result.Categories.Should().BeOfType(typeof(List<AttractionCategoryDto>));
-            result.Categories.Count.Should().Be(listCount);
+            result.Should().BeOfType(typeof(List<AttractionCategoryListVm>));
             result.Count.Should().Be(listCount);
 
             _mockAttractionCategoryRepository.Verify(repo => repo.GetAllAsync(), Times.Exactly(2)); // first in this test

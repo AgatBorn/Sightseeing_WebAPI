@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sightseeing.Application.Features.AttractionCategories.Queries.GetAttractionCategoryDetail
 {
-    public class GetAttractionCategoryDetailQueryHandler : IRequestHandler<GetAttractionCategoryDetailQuery, AttractionCategoryVm>
+    public class GetAttractionCategoryDetailQueryHandler : IRequestHandler<GetAttractionCategoryDetailQuery, AttractionCategoryDetailVm>
     {
         private readonly IMapper _mapper;
         private readonly IAttractionCategoryRepository _categoryRepository;
@@ -21,7 +21,7 @@ namespace Sightseeing.Application.Features.AttractionCategories.Queries.GetAttra
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<AttractionCategoryVm> Handle(GetAttractionCategoryDetailQuery request, CancellationToken cancellationToken)
+        public async Task<AttractionCategoryDetailVm> Handle(GetAttractionCategoryDetailQuery request, CancellationToken cancellationToken)
         {
             var validator = new GetAttractionCategoryDetailQueryValidator();
             var validationResult = await validator.ValidateAsync(request);
@@ -38,7 +38,7 @@ namespace Sightseeing.Application.Features.AttractionCategories.Queries.GetAttra
                 throw new ApplicationException($"Attraction category {request.Id} not found");
             }
 
-            var attractionCategoryDetailVm = _mapper.Map<AttractionCategoryVm>(attractionCategory);
+            var attractionCategoryDetailVm = _mapper.Map<AttractionCategoryDetailVm>(attractionCategory);
 
             return attractionCategoryDetailVm;
         }

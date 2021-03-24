@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Sightseeing.Application.Features.AttractionCategories.Queries.GetAllCategories
 {
-    public class AttractionCategoriesListVm
+    public class AttractionCategoryListVm
     {
-        public IList<AttractionCategoryDto> Categories { get; set; }
-        public int Count { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }

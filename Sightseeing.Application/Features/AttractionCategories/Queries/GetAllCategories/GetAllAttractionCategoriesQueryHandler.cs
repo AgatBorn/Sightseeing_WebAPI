@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sightseeing.Application.Features.AttractionCategories.Queries.GetAllCategories
 {
-    public class GetAllAttractionCategoriesQueryHandler : IRequestHandler<GetAllAttractionCategoriesQuery, AttractionCategoriesListVm>
+    public class GetAllAttractionCategoriesQueryHandler : IRequestHandler<GetAllAttractionCategoriesQuery, IList<AttractionCategoryListVm>>
     {
         private readonly IMapper _mapper;
         private readonly IAttractionCategoryRepository _categoryRepository;
@@ -21,19 +21,13 @@ namespace Sightseeing.Application.Features.AttractionCategories.Queries.GetAllCa
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<AttractionCategoriesListVm> Handle(GetAllAttractionCategoriesQuery request, CancellationToken cancellationToken)
+        public async Task<IList<AttractionCategoryListVm>> Handle(GetAllAttractionCategoriesQuery request, CancellationToken cancellationToken)
         {
             var categories = await _categoryRepository.GetAllAsync();
 
-            var categoriesDto = _mapper.Map<List<AttractionCategoryDto>>(categories);
+            var categoriesVm = _mapper.Map<List<AttractionCategoryListVm>>(categories);
 
-            var vm = new AttractionCategoriesListVm
-            {
-                Categories = categoriesDto,
-                Count = categoriesDto.Count
-            };
-
-            return vm;
+            return categoriesVm;
         }
     }
 }

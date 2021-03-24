@@ -9,6 +9,6 @@ namespace Sightseeing.Application.Features.Cities.Queries.GetCityDetail
         public string Name { get; set; }
         public Guid CountryId { get; set; }
         public string CountryName { get; set; }
-        public ICollection<AttractionDto> Attractions { get; set; }
+        public ICollection<CityDetailAttractionVm> Attractions { get; set; }
     }
 }

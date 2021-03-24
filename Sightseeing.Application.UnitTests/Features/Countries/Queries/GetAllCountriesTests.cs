@@ -41,9 +41,7 @@ namespace Sightseeing.Application.UnitTests.Features.Countries.Queries
 
             var result = await handler.Handle(new GetAllCountriesQuery(), CancellationToken.None);
 
-            result.Should().BeOfType(typeof(CountriesListVm));
-            result.Countries.Should().BeOfType(typeof(List<CountryDto>));
-            result.Countries.Count.Should().Be(listCount);
+            result.Should().BeOfType(typeof(List<CountryListVm>));
             result.Count.Should().Be(listCount);
 
             _mockCountryRepository.Verify(repo => repo.GetAllAsync(), Times.Exactly(2)); // first in this test

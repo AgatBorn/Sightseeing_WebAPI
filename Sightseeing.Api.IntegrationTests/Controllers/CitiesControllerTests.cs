@@ -48,9 +48,9 @@ namespace Sightseeing.Api.IntegrationTests.Controllers
 
             response.EnsureSuccessStatusCode();
 
-            var result = await Utilities.GetResponseContent<CitiesListVm>(response);
+            var result = await Utilities.GetResponseContent<List<CityListVm>>(response);
 
-            result.Should().BeOfType(typeof(CitiesListVm));
+            result.Should().BeOfType(typeof(List<CityListVm>));
             result.Should().NotBeNull();
             result.Count.Should().BeGreaterThan(0);
         }

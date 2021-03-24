@@ -8,6 +8,6 @@ namespace Sightseeing.Application.Features.Countries.Queries.GetCountryDetail
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public ICollection<CityDto> Cities { get; set; }
+        public ICollection<CountryDetailCityVm> Cities { get; set; }
     }
 }

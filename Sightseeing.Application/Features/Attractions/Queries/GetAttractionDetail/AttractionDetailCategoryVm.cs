@@ -2,9 +2,9 @@
 
 namespace Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail
 {
-    public class CityDto
+    public class AttractionDetailCategoryVm
     {
-        public Guid CityId { get; set; }
+        public Guid AttractionCategoryId { get; set; }
         public string Name { get; set; }
     }
 }

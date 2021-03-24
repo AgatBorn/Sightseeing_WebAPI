@@ -32,9 +32,9 @@ namespace Sightseeing.Api.IntegrationTests.Controllers
 
             response.EnsureSuccessStatusCode();
 
-            var result = await Utilities.GetResponseContent<AttractionCategoryVm>(response);
+            var result = await Utilities.GetResponseContent<AttractionCategoryDetailVm>(response);
 
-            result.Should().BeOfType(typeof(AttractionCategoryVm));
+            result.Should().BeOfType(typeof(AttractionCategoryDetailVm));
             result.Should().NotBeNull();
             result.Id.ToString().Should().Be(guid);
         }
@@ -48,9 +48,9 @@ namespace Sightseeing.Api.IntegrationTests.Controllers
 
             response.EnsureSuccessStatusCode();
 
-            var result = await Utilities.GetResponseContent<AttractionCategoriesListVm>(response);
+            var result = await Utilities.GetResponseContent<List<AttractionCategoryListVm>>(response);
 
-            result.Should().BeOfType(typeof(AttractionCategoriesListVm));
+            result.Should().BeOfType(typeof(List<AttractionCategoryListVm>));
             result.Should().NotBeNull();
             result.Count.Should().BeGreaterThan(0);
         }

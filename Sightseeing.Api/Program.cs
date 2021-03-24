@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Sightseeing.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ namespace Sightseeing.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var config = new ConfigurationBuilder()
                             .AddJsonFile("appsettings.json")
@@ -26,7 +28,17 @@ namespace Sightseeing.Api
             try
             {
                 Log.Information("Starting application");
-                CreateHostBuilder(args).Build().Run();
+                var host = CreateHostBuilder(args).Build();
+
+                using (var scope = host.Services.CreateScope())
+                {
+                    var services = scope.ServiceProvider;
+                    var dbContext = services.GetRequiredService<SightseeingDbContext>();
+
+                    await SightseeingDbContextSeed.SeedAsync(dbContext);
+                }
+
+                host.Run();
             }
             catch (Exception ex)
             {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sightseeing.Application.Features.Cities.Queries.GetAllCities
 {
-    public class GetAllCitiesQueryHandler : IRequestHandler<GetAllCitiesQuery, CitiesListVm>
+    public class GetAllCitiesQueryHandler : IRequestHandler<GetAllCitiesQuery, IList<CityListVm>>
     {
         private readonly IMapper _mapper;
         private readonly ICityRepository _cityRepository;
@@ -20,19 +20,13 @@ namespace Sightseeing.Application.Features.Cities.Queries.GetAllCities
             _cityRepository = cityRepository;
         }
 
-        public async Task<CitiesListVm> Handle(GetAllCitiesQuery request, CancellationToken cancellationToken)
+        public async Task<IList<CityListVm>> Handle(GetAllCitiesQuery request, CancellationToken cancellationToken)
         {
             var cities = await _cityRepository.GetAllAsync();
 
-            var citiesDto = _mapper.Map<List<CityDto>>(cities);
+            var list = _mapper.Map<List<CityListVm>>(cities);
 
-            var vm = new CitiesListVm
-            {
-                Cities = citiesDto,
-                Count = citiesDto.Count
-            };
-
-            return vm;
+            return list;
         }
     }
 }

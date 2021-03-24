@@ -40,9 +40,7 @@ namespace Sightseeing.Application.UnitTests.Features.Cities.Queries
 
             var result = await handler.Handle(new GetAllCitiesQuery(), CancellationToken.None);
 
-            result.Should().BeOfType(typeof(CitiesListVm));
-            result.Cities.Should().BeOfType(typeof(List<CityDto>));
-            result.Cities.Count.Should().Be(listCount);
+            result.Should().BeOfType(typeof(List<CityListVm>));
             result.Count.Should().Be(listCount);
 
             _mockCityRepository.Verify(repo => repo.GetAllAsync(), Times.Exactly(2)); // first in this test
