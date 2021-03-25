@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using MediatR;
+using Sightseeing.Application.Features.Attractions.Queries.GetAllAtractions;
 using Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail;
 using Sightseeing.Grpc;
 
@@ -38,6 +39,26 @@ namespace Sightseeing.Api.Services
                     CityName = attraction.City.Name
                 }
             };
+
+            return response;
+        }
+
+        public override async Task<AttractionsResponse> GetAllAttractions(AttractionsRequest request, ServerCallContext context)
+        {
+            var listOfAttractions = await _mediator.Send(new GetAllAttractionsQuery());
+
+            var response = new AttractionsResponse();
+
+            foreach (var attraction in listOfAttractions)
+            {
+                response.Attraction.Add(new Attraction
+                {
+                     Id = attraction.Id.ToString(),
+                     Name = attraction.Name,
+                     CategoryName = attraction.AttractionCategoryName,
+                     CityName = attraction.CityName
+                });
+            }
 
             return response;
         }
