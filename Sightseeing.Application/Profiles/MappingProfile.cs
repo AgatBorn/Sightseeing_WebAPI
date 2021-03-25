@@ -3,6 +3,7 @@ using Sightseeing.Application.Features.AttractionCategories.Commands.CreateAttra
 using Sightseeing.Application.Features.AttractionCategories.Queries.GetAllCategories;
 using Sightseeing.Application.Features.AttractionCategories.Queries.GetAttractionCategoryDetail;
 using Sightseeing.Application.Features.Attractions.Commands.CreateAttraction;
+using Sightseeing.Application.Features.Attractions.Commands.UpdateAttraction;
 using Sightseeing.Application.Features.Attractions.Queries.GetAllAtractions;
 using Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail;
 using Sightseeing.Application.Features.Cities.Commands.CreateCity;
@@ -33,6 +34,10 @@ namespace Sightseeing.Application.Profiles
                 .ForMember(a => a.Id, opt => opt.MapFrom(aa => aa.AttractionId))
                 .ForMember(a => a.AttractionCategoryName, opt => opt.MapFrom(aa => aa.Category.Name))
                 .ForMember(a => a.CityName, opt => opt.MapFrom(aa => aa.City.Name));
+
+            CreateMap<UpdateAttractionCommand, Attraction>()
+                .ForMember(a => a.AttractionId, opt => opt.MapFrom(aa => aa.Id));
+            CreateMap<Attraction, UpdatedAttractionDto>();
 
             CreateMap<CreateAttractionCategoryCommand, AttractionCategory>();
             CreateMap<AttractionCategory, AttractionCategoryDto>()

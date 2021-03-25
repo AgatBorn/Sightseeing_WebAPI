@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sightseeing.Application.Features.Attractions.Commands.CreateAttraction;
+using Sightseeing.Application.Features.Attractions.Commands.DeleteAttraction;
+using Sightseeing.Application.Features.Attractions.Commands.UpdateAttraction;
 using Sightseeing.Application.Features.Attractions.Queries.GetAllAtractions;
 using Sightseeing.Application.Features.Attractions.Queries.GetAttractionDetail;
 using System;
@@ -46,6 +48,23 @@ namespace Sightseeing.Api.Controllers
             var attractionDto = await _mediator.Send(createAttractionCommand);
 
             return CreatedAtAction(nameof(GetAttractionDetails), new { id = attractionDto.AttractionId }, attractionDto);
+        }
+
+        [Authorize]
+        [HttpPut]
+        public async Task<ActionResult<UpdatedAttractionDto>> UpdateAttraction([FromBody] UpdateAttractionCommand updateAttractionCommand)
+        {
+            var attractionDto = await _mediator.Send(updateAttractionCommand);
+
+            return Ok(attractionDto);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAttraction(Guid id)
+        {
+            await _mediator.Send(new DeleteAttractionCommand() { Id = id });
+
+            return NoContent();
         }
     }
 }

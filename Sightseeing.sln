@@ -30,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{E5C39FF7
 		attractions.proto = attractions.proto
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sightseeing.Api.IntegrationTests", "Sightseeing.Api.IntegrationTests\Sightseeing.Api.IntegrationTests.csproj", "{036E35C0-BBBA-49E9-920C-6B2657144061}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sightseeing.Api.IntegrationTests", "Sightseeing.Api.IntegrationTests\Sightseeing.Api.IntegrationTests.csproj", "{036E35C0-BBBA-49E9-920C-6B2657144061}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
