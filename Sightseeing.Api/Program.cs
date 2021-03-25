@@ -35,6 +35,8 @@ namespace Sightseeing.Api
                     var services = scope.ServiceProvider;
                     var dbContext = services.GetRequiredService<SightseeingDbContext>();
 
+                    dbContext.Database.EnsureCreated();
+
                     await SightseeingDbContextSeed.SeedAsync(dbContext);
                 }
 
