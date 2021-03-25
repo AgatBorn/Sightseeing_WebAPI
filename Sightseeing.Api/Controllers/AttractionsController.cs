@@ -51,14 +51,20 @@ namespace Sightseeing.Api.Controllers
         }
 
         [Authorize]
-        [HttpPut]
-        public async Task<ActionResult<UpdatedAttractionDto>> UpdateAttraction([FromBody] UpdateAttractionCommand updateAttractionCommand)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UpdatedAttractionDto>> UpdateAttraction(Guid id, [FromBody] UpdateAttractionCommand updateAttractionCommand)
         {
+            if (id != updateAttractionCommand.Id)
+            {
+                return BadRequest();
+            }
+
             var attractionDto = await _mediator.Send(updateAttractionCommand);
 
             return Ok(attractionDto);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAttraction(Guid id)
         {

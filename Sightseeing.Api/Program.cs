@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Sightseeing.Identity;
 using Sightseeing.Persistence;
 using System;
 using System.Collections.Generic;
@@ -34,8 +35,10 @@ namespace Sightseeing.Api
                 {
                     var services = scope.ServiceProvider;
                     var dbContext = services.GetRequiredService<SightseeingDbContext>();
+                    var identityDbContext = services.GetRequiredService<SightseeingIdentityDbContext>();
 
                     dbContext.Database.EnsureCreated();
+                    identityDbContext.Database.EnsureCreated();
 
                     await SightseeingDbContextSeed.SeedAsync(dbContext);
                 }
